@@ -10,7 +10,7 @@ from os import path
 import sys
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from login.bypass import bypass
+# from login.bypass import bypass
 
 
 
@@ -22,8 +22,8 @@ DRIVER = webdriver
 FILE = "variables.json"
 MYVAR = json_read(FILE)
 DRIVER = setup(DRIVER, MYVAR)
-#login(DRIVER, MYVAR)
-bypass(DRIVER, MYVAR)
+login(DRIVER, MYVAR)
+# bypass(DRIVER, MYVAR)
 
 time.sleep(5)
 
