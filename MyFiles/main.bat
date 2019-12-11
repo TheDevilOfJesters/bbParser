@@ -1,0 +1,1 @@
+pyinstaller --add-data="drivers\chromedriver_win32\chromedriver.exe;drivers\chromedriver_win32" --add-data="variables.json;." main.py
