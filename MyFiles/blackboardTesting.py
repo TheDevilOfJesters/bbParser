@@ -1,15 +1,10 @@
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
 import os.path
 from os import path
-import sys
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.opera import OperaDriverManager
-from webdriver_manager.microsoft import IEDriverManager
-from datetime import datetime
-
-browser = "opera"
 
 def setup(driver, my_vars):
     options = Options()
