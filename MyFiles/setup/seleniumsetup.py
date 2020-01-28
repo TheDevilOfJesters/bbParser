@@ -11,6 +11,7 @@ def setup(driver, my_vars):
     options = Options()
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-default-apps")
+    options.add_argument("--start-maximized")
         # options.add_argument("--disable-gpu")
         # options.add_argument("--headless")
         # driver = webdriver.Chrome(chrome_options=options, executable_path=chromedriver_path)

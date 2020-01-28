@@ -2,6 +2,7 @@ from setup.seleniumsetup import setup, teardown
 # from blackboardTesting import setup, teardown
 from login.blackboardlogin import login
 from setup.jsonread import json_read
+from dostuff.navigate import getClassNames
 import time
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
@@ -24,6 +25,7 @@ MYVAR = json_read(FILE)
 DRIVER = setup(DRIVER, MYVAR)
 login(DRIVER, MYVAR)
 # bypass(DRIVER, MYVAR)
+getClassNames(DRIVER, MYVAR)
 
 time.sleep(5)
 

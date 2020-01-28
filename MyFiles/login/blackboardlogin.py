@@ -1,3 +1,8 @@
+import time
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+
 def login(driver, my_vars):
     username = str(my_vars['uname'])
     password = str(my_vars['passwd'])
@@ -11,4 +16,6 @@ def login(driver, my_vars):
     passwordEle = driver.find_element_by_id("passwordInput")
     passwordEle.send_keys(password)
     passwordEle.submit()
-    # print(driver.page_source)
+    time.sleep(5)
+    #print(driver.page_source)
+
