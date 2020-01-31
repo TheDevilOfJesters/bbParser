@@ -11,8 +11,8 @@ def getClassNames(driver, myvars):
 
     splitLink = getClassLinkID(classes[0].get_attribute("href"))
 
-    print(driver.get(getClassLinkID(splitLink)))
-
+    # print(splitLink)
+    driver.get(splitLink)
     getAssginments(driver)
 
 def getClassLinkID(classLink):
@@ -20,10 +20,8 @@ def getClassLinkID(classLink):
     classLinkEnd = "_1&handle=announcements_entry&mode=view"
 
     splitLink = classLink.split("_", 2)
-    print(splitLink[1])
-    link = classLinkStart + splitLink[1] + classLinkEnd
-    print(link)
-    return link
+    print(splitLink)
+    return classLinkStart + splitLink[1] + classLinkEnd
 
 
 # put classes in a sqlite databse with their course id and url-course id for quick navigation later
@@ -33,8 +31,8 @@ def getAssginments(driver):
     assignments = driver.find_elements_by_partial_link_text("Assignments")
     print(assignments)
     # print(assignments[1].text)
-    # print(assignments[0].get_attribute("href"))
-    # driver.get(assignments[0].get_attribute("href"))
+    print(assignments[0].get_attribute("href"))
+    driver.get(assignments[0].get_attribute("href"))
     time.sleep(5)
 #     #https://blackboard.students.ptcollege.edu/webapps/blackboard/content/listContent.jsp?course_id=_3689_1&content_id=_425670_1&mode=reset  -- enterprise apps
 #     #<a href="/webapps/blackboard/content/listContent.jsp?course_id=_3689_1&amp;content_id=_425670_1&amp;mode=reset" target="_self"><span title="Weekly Assignments">Weekly Assignments</span></a>   -- enterprise
