@@ -1,4 +1,5 @@
 import time
+from selenium import webdriver
 
 
 def getClassNames(driver, myvars):
@@ -6,12 +7,11 @@ def getClassNames(driver, myvars):
     classes = driver.find_elements_by_xpath("//*[@id=\"_3_1termCourses_noterm\"]/ul[1]/li/a")
     #classes = driver.find_elements_by_partial_link_text("January")
     # print(len(classes))
-    # print(classes[1].text)
+    # print(classes[0].text)
 
+    print(len(classes))
 
-    splitLink = getClassLinkID(classes[0].get_attribute("href"))
-
-    print(driver.get(getClassLinkID(splitLink)))
+    driver.get(getClassLinkID(classes[0].get_attribute("href")))
 
     getAssginments(driver)
 
@@ -20,9 +20,8 @@ def getClassLinkID(classLink):
     classLinkEnd = "_1&handle=announcements_entry&mode=view"
 
     splitLink = classLink.split("_", 2)
-    print(splitLink[1])
     link = classLinkStart + splitLink[1] + classLinkEnd
-    print(link)
+    # print(link)
     return link
 
 
@@ -31,17 +30,17 @@ def getClassLinkID(classLink):
 
 def getAssginments(driver):
     assignments = driver.find_elements_by_partial_link_text("Assignments")
-    print(assignments)
-    # print(assignments[1].text)
-    # print(assignments[0].get_attribute("href"))
     # driver.get(assignments[0].get_attribute("href"))
-    time.sleep(5)
-#     #https://blackboard.students.ptcollege.edu/webapps/blackboard/content/listContent.jsp?course_id=_3689_1&content_id=_425670_1&mode=reset  -- enterprise apps
-#     #<a href="/webapps/blackboard/content/listContent.jsp?course_id=_3689_1&amp;content_id=_425670_1&amp;mode=reset" target="_self"><span title="Weekly Assignments">Weekly Assignments</span></a>   -- enterprise
-#     #//*[@id="paletteItem:_84158_1"]/a
-#     #/html/body/div[5]/div[2]/nav/div/div[2]/div[1]/div[2]/ul/li[8]/a
-#
-#     #https://blackboard.students.ptcollege.edu/webapps/blackboard/content/listContent.jsp?course_id=_3610_1&content_id=_420111_1&mode=reset  --effective speech
-#     #<a href="/webapps/blackboard/content/listContent.jsp?course_id=_3610_1&amp;content_id=_420111_1&amp;mode=reset" target="_self"><span title="Assignments">Assignments</span></a>   -- speech
-#     # //*[@id="paletteItem:_83589_1"]/a
-#     #/html/body/div[5]/div[2]/nav/div/div[2]/div/div[2]/ul/li[11]/a
+    print(assignments[0].text)
+
+    driver.get(assignments[0].get_attribute("href"))
+
+    links = driver.find_elements_by_tag_name("a")
+
+    print(len(links))
+    print(links[31].text)
+    driver = driver.find_element_by_id("content_listContainer")
+    newlinks = driver.find_elements_by_tag_name("a")
+    print(len(newlinks))
+    # print(assignments[0].get_attribute("href"))
+    time.sleep(7)

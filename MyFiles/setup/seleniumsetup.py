@@ -32,7 +32,7 @@ def getBrowser(options, myvars):
     # IEPath = os.getenv("programfiles")
 
     if (path.isdir(bravePath) and browser.lower() == "brave"):
-        options.binary_location = bravePath + "/brave.exe"
+        options.binary_location = bravePath + "\\brave.exe"
         chromeDriver = getChromeDriver()
         driver = webdriver.Chrome(options=options, executable_path=chromeDriver)
         return(driver)
