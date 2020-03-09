@@ -1,20 +1,22 @@
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
-import os.path
+# import
+import os
 from os import path
-import sys
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.opera import OperaDriverManager
+
 
 def setup(driver, my_vars):
     options = Options()
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-default-apps")
     options.add_argument("--start-maximized")
-        # options.add_argument("--disable-gpu")
-        # options.add_argument("--headless")
-        # driver = webdriver.Chrome(chrome_options=options, executable_path=chromedriver_path)
+    # options.add_argument("--disable-gpu")
+    # options.add_argument("--headless")
+    # driver = webdriver.Chrome(chrome_options=options, executable_path=chromedriver_path)
     driver = getBrowser(options, my_vars)
     return driver
 
@@ -25,7 +27,7 @@ def getBrowser(options, myvars):
 
     browser = str(myvars['browser'])
 
-    bravePath = os.getenv('localappdata') + "\BraveSoftware\Brave-Browser\Application"
+    bravePath = os.getenv("programfiles(x86)") + "\BraveSoftware\Brave-Browser\Application"
     chromePath = os.getenv("programfiles(x86)") + "\Google\Chrome\Application"
     firefoxPath = os.getenv("programfiles") + "\Mozilla Firefox"
     operaPath = os.getenv("localappdata") + "\Programs\Opera"
@@ -39,12 +41,12 @@ def getBrowser(options, myvars):
     elif (path.isdir(firefoxPath) and browser.lower() == "firefox"):
         options.binary_location = firefoxPath + "/firefox.exe"
         firefoxDriver =getFirefoxDriver()
-        driver = webdriver.Firefox(executable_path=firefoxDriver)
+        driver =webdriver.Firefox(executable_path=firefoxDriver)
         return(driver)
     elif (path.isdir(chromePath) and browser.lower() == "chrome"):
         options.binary_location = chromePath + "/chrome.exe"
         chromeDriver = getChromeDriver()
-        driver = webdriver.Chrome(options=options, executable_path=chromeDriver)
+        driver =webdriver.Chrome(options=options, executable_path=chromeDriver)
         return(driver)
     elif (path.isdir(operaPath) and browser.lower() == "opera"):
         options = webdriver.ChromeOptions()
@@ -63,7 +65,7 @@ def getBrowser(options, myvars):
     # driver = webdriver.Ie(IEDriverManager().install())
 
 def getChromeDriver():
-    chromeDriver = ChromeDriverManager().install()
+    chromeDriver =ChromeDriverManager().install()
     return chromeDriver
 def getFirefoxDriver():
     firefoxDriver = GeckoDriverManager().install()

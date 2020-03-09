@@ -1,31 +1,19 @@
-from setup.seleniumsetup import setup, teardown
-# from blackboardTesting import setup, teardown
-from login.blackboardlogin import login
-from setup.jsonread import json_read
-from dostuff.navigate import getClassNames
 import time
-from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-import os.path
-from os import path
-import sys
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-# from login.bypass import bypass
+from login.blackboardlogin import login
+from dostuff.navigateToAssignments import getClassNames
+from setup.jsonread import json_read
+from setup.localSetup import setupLocalFolder
+from setup.seleniumsetup import setup, teardown
 
-
-
-# dir_path = os.path.dirname(os.path.realpath(__file__))
-# print(dir_path)
 
 DRIVER = webdriver
-
-FILE = "variables.json"
-MYVAR = json_read(FILE)
-DRIVER = setup(DRIVER, MYVAR)
-login(DRIVER, MYVAR)
+myvars = json_read()
+setupLocalFolder(myvars)
+DRIVER = setup(DRIVER, myvars)
+login(DRIVER, myvars)
 # bypass(DRIVER, MYVAR)
-getClassNames(DRIVER, MYVAR)
+getClassNames(DRIVER, myvars)
 
 time.sleep(5)
 
