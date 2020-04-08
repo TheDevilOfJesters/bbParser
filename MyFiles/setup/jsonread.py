@@ -4,13 +4,13 @@ FILE = "variables.json"
 
 
 def json_read():
-    with open(FILE, 'r') as myfile:
-        data = myfile.read()
+    with open(FILE, 'r') as my_file:
+        data = my_file.read()
 
     my_vars = json.loads(data)
 
     # print(str(my_vars['uname']))
-    myfile.close()
+    my_file.close()
     return my_vars
 
 

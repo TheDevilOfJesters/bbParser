@@ -4,16 +4,16 @@ import time
 def login(driver, my_vars):
     username = str(my_vars['uname'])
     password = str(my_vars['passwd'])
-    siteBase = str(my_vars['siteBase'])
-    schoolDomain = str(my_vars['schoolDomain'])
+    site_base = str(my_vars['siteBase'])
+    school_domain = str(my_vars['schoolDomain'])
 
-    URL = "http://" + username + ":" + password + "@" + siteBase
-    driver.get(URL)
-    usernameEle = driver.find_element_by_id("userNameInput")
-    usernameEle.send_keys(schoolDomain + username)
-    passwordEle = driver.find_element_by_id("passwordInput")
-    passwordEle.send_keys(password)
-    passwordEle.submit()
+    url = "http://" + username + ":" + password + "@" + site_base
+    driver.get(url)
+    username_ele = driver.find_element_by_id("userNameInput")
+    username_ele.send_keys(school_domain + username)
+    password_ele = driver.find_element_by_id("passwordInput")
+    password_ele.send_keys(password)
+    password_ele.submit()
     time.sleep(5)
     #print(driver.page_source)
 

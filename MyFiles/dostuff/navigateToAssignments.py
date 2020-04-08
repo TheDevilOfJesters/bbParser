@@ -1,38 +1,41 @@
 import time
 from selenium.common.exceptions import NoSuchElementException
-from setup.localSetup import createFolder
+from setup.localSetup import create_folder
 
 
 def getClassNames(driver, myvars):
     # classes = driver.find_elements_by_xpath("//*[@id=\"_3_1termCourses_noterm\"]/ul[1]/li/a")
     table = driver.find_element_by_id("_3_1termCourses_noterm")
 
-    classlist = table.find_elements_by_tag_name("ul")
-    classes = classlist[0].find_elements_by_tag_name("li")
+    class_list = table.find_elements_by_tag_name("ul")
+    classes = class_list[0].find_elements_by_tag_name("li")
     print(len(classes))
     print(classes[0].text)
     for index, item in enumerate(classes):
-        classLink = classes[index].find_element_by_tag_name("a")
-        if("announcement" not in classLink.get_attribute("href")):
-            createFolder(classLink.text, myvars)
+        class_link = classes[index].find_element_by_tag_name("a")
+        if "announcement" not in class_link.get_attribute("href"):
+            create_folder(class_link.text, myvars)
     # # classLink = classes[0].find_element_by_tag_name("a")
     # driver.get(getClassLinkID(classLink.get_attribute("href")))
     # # driver.get(getClassLinkID(classes[0].get_attribute("href")))
-    driver.get(getClassLinkID(classLink.get_attribute("href")))
+    class_link = classes[0].find_element_by_tag_name("a")
+    driver.get(getClassLinkID(class_link.get_attribute("href")))
 
-    getAssginments(driver, myvars)
+    getAssignments(driver)
 
 
-def getClassLinkID(classLink):
-    classLinkStart = "https://blackboard.students.ptcollege.edu/webapps/blackboard/execute/announcement?method=search&context=course_entry&course_id=_"
-    classLinkEnd = "_1&handle=announcements_entry&mode=view"
+def getClassLinkID(class_link):
+    class_link_start = "https://blackboard.students.ptcollege.edu/webapps/blackboard/execute/announcement?method" \
+                       "=search&context=course_entry&course_id=_ "
+    class_link_end = "_1&handle=announcements_entry&mode=view"
 
-    splitLink = classLink.split("_", 2)
-    link = classLinkStart + splitLink[1] + classLinkEnd
+    split_link = class_link.split("_", 2)
+    link = class_link_start + split_link[1] + class_link_end
     # print(link)
     return link
 
-def getAssginments(driver, my_vars):
+
+def getAssignments(driver):
     assignments = driver.find_elements_by_partial_link_text("Assignments")
     driver.get(assignments[0].get_attribute("href"))
 

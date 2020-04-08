@@ -1,45 +1,47 @@
 import os
-from os import path
 from pathlib import Path
-from setup.jsonread import json_read
 from setup.jsonread import changeJson
 
-def setupLocalFolder(myVars):
-    installDir = str(myVars['installDir'])
-    if installDir.lower() == "default":
-        installDir = str(Path.home())
-        changeJson(installDir, "installDir")
+
+def setup_local_folder(my_vars):
+    install_dir = str(my_vars['installDir'])
+    if install_dir.lower() == "default":
+        install_dir = str(Path.home())
+        changeJson(install_dir, "installDir")
     else:
-        installDir = installDir
+        install_dir = install_dir
 
-    print(installDir)
-    createRoot(installDir, myVars)
+    print(install_dir)
+    create_root(install_dir, my_vars)
 
-def createRoot(installDir, vars):
-    rootname = str(vars['rootName'])
-    Path = installDir + "\\" + rootname
-    if(os.path.exists(Path)):
+
+def create_root(install_dir, my_vars):
+    root_name = str(my_vars['rootName'])
+    root_path = install_dir + "\\" + root_name
+    if os.path.exists(root_path):
         print("Root Already exists")
     else:
-        os.mkdir(Path)
+        os.mkdir(root_path)
 
-def createFolder(folderNames, myvars):
-    if(":" in folderNames):
-        folderName = cleanNameSection(folderNames, "(", "head")
-        folderName = cleanNameSection(folderName, ": ", "tail")
-        path = str(myvars["installDir"]) + "\\"+ str(myvars["rootName"])
-        newFolder = path + "\\" + folderName
-        if (os.path.exists(newFolder)):
-            print(folderName + "Already exists")
+
+def create_folder(new_folder_name, my_vars):
+    if ":" in new_folder_name:
+        folder_name = clean_name_section(new_folder_name, "(", "head")
+        folder_name = clean_name_section(folder_name, ": ", "tail")
+        path = str(my_vars["installDir"]) + "\\" + str(my_vars["rootName"])
+        folder_name = path + "\\" + folder_name
+        if os.path.exists(folder_name):
+            print(folder_name + "Already exists")
         else:
-            os.mkdir(newFolder)
+            os.mkdir(folder_name)
 
-def cleanNameSection(folderName, remove,  returnT):
-    head, sep, tail = folderName.partition(remove)
-    if returnT == "head":
-        foldernames = head
-    elif returnT == "sep":
-        foldernames = sep
+
+def clean_name_section(folder_name, remove, return_type):
+    head, sep, tail = folder_name.partition(remove)
+    if return_type == "head":
+        folder_name = head
+    elif return_type == "sep":
+        folder_name = sep
     else:
-        foldernames = tail
-    return foldernames
+        folder_name = tail
+    return folder_name
