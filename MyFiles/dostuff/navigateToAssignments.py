@@ -21,7 +21,7 @@ def getClassNames(driver, myvars):
     class_link = classes[0].find_element_by_tag_name("a")
     driver.get(getClassLinkID(class_link.get_attribute("href")))
 
-    getAssignments(driver)
+    # getAssignments(driver)
 
 
 def getClassLinkID(class_link):

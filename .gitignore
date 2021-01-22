@@ -7,3 +7,5 @@
 *.iml
 out
 gen
+!/MyFiles/variables.json
+!/MyFiles/variables_MASTER.json
